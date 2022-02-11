@@ -1,7 +1,6 @@
 const { Schema, model, Types } = require('mongoose');
 
 const ReactionSchema = new Schema({
-    // set custom id to avoid confustion with parent comment _id
     reactionId: {
         type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId()
