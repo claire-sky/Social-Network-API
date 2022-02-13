@@ -7,6 +7,10 @@ const UserController = {
         .populate({
             path: 'thoughts',
             select: '-__v'
+        },
+        {
+            path: 'friends',
+            select: '-__v'
         })
         .select('-__v')
         .sort({ id: -1 })
@@ -22,6 +26,10 @@ const UserController = {
         User.findOne({ _id: params.id })
         .populate({
             path: 'thoughts',
+            select: '-__v'
+        },
+        {
+            path: 'friends',
             select: '-__v'
         })
         .select('-__v')
@@ -84,8 +92,8 @@ const UserController = {
           })
           .catch(err => res.json(err));
       },
-    // remove friend from user
-    removeFriend({ params }, res) {
+    // delete friend from user
+    deleteFriend({ params }, res) {
         Friend.findOneAndDelete({ _id: params.friendId })
         .then(dbFriendData => {
             if(!dbFriendData) {
