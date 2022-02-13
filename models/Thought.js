@@ -40,7 +40,7 @@ const ThoughtSchema = new Schema({
         type: String,
         required: true
     },
-    reations: [ReactionSchema]
+    reactions: [ReactionSchema]
 },
 {
     toJSON: {
@@ -48,6 +48,11 @@ const ThoughtSchema = new Schema({
         getters: true
     },
     id: false
+});
+
+// get total count of reactions on retrieval
+ThoughtSchema.virtual('reactionCount').get(function() {
+    return this.reactions.length;
 });
 
 const Thought = model('Thought', ThoughtSchema);

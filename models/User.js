@@ -3,13 +3,15 @@ const { Schema, model } = require('mongoose');
 const UserSchema = new Schema({
     username: {
         type: String,
+        unique: true,
         required: 'Please enter a username',
         trim: true
     },
     email: {
         type: String,
         unique: true,
-        match: [/.+@.+\..+/]
+        required: true,
+        match: [/.+@.+\..+/, 'Please enter a valid email']
     },
     thoughts: [
         {
@@ -31,6 +33,11 @@ const UserSchema = new Schema({
     },
     id: false
 });
+
+// get total count of friends on retrieval
+UserSchema.virtual('friendCount').get(function() {
+    return this.friends.length;
+  });  
 
 const User = model('User', UserSchema);
 
