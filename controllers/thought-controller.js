@@ -19,7 +19,7 @@ const ThoughtController = {
 
     // get one thought by id
     getThoughtById({ params }, res) {
-        Thought.findOne({ _id: params.id })
+        Thought.findOne({ _id: params.thoughtId })
         .populate({
             path: 'reactions',
             select: '-__v'
@@ -88,13 +88,7 @@ const ThoughtController = {
                 { new: true }
             );
         })
-        .then(dbUserData => {
-            if (!dbUserData) {
-                res.status(404).json({ message: 'No user found with this id' });
-                return;
-            }
-            res.json(dbUserData);
-        })
+        .then(dbUserData => res.json(dbUserData))
         .catch(err => res.json(err));
     },
     // remove reaction from thought

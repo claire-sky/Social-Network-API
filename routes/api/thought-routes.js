@@ -20,10 +20,10 @@ router
     
 // Set up GET, POST and DELETE at /api/thoughts/:userId/:thoughtId
 router
-  .route('/:userId/:thoughtId')
-  .get(getThoughtById)
-  .put(addReaction)
-  .delete(removeThought);
+    .route('/:userId/:thoughtId')
+    .get(getThoughtById)
+    .put(addReaction)
+    .delete(removeThought);
 
 // Set up DELETE at /api/thoughts/:userId/:thoughtId/:reactionId
 router

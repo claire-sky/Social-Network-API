@@ -21,7 +21,7 @@ router
     .get(getUserById)
     .put(updateUser)
     .delete(deleteUser)
-    .post(addFriend);
+    .post(addFriend)
 
 // Set up DELETE friend at /api/users/:userId/:friendId
 router
